@@ -269,6 +269,7 @@ role["actor_id"] = a_h["id"]
 role["character"] = "Selina Kyle"
 role.save
 
+all_roles = Role.all
 
 bb_roles = Role.where({"movie_id" => bb["id"]})
 tdk_roles = Role.where({"movie_id" => tdk["id"]})
@@ -293,6 +294,9 @@ puts wb["movie_name"]
 puts bb["studio_id"]
 puts tdk["studio_id"]
 puts tdkr["movie_name"]
+
+
+
 puts "======"
 puts ""
 
@@ -328,11 +332,14 @@ puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
-for movie in all_movies
-    bb_actor = Actor.find_by({"movie_id" => bb["id"]})
-    movie_name = movie["movie_name"]
-    actor_name = actor["name"]
-    character = role["name"]
-    puts "#{movie_name} #{actor_name} #{character}"
-end
 
+for role in all_roles
+moviename = Movie.where({"movie_id" => movie["id"] })
+    movie_name = movie["movie_name"]
+
+actorname = Actor.find_by({"id" => role["actor_id"] })
+    name = actor["name"]
+
+    character = role["character"]
+    puts "#{movie_name} #{name} #{character}"
+end
